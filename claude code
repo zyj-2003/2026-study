@@ -1,0 +1,53 @@
+1.安装
+		claude.com/product/claude-code
+	
+2.创建目录 mkdir 目录名
+3.进入目录 cd
+4.使用claude命令打开claude
+	如果想要claude code 操作终端时也不用询问我们那么要使用下面的命令启动
+		Claude --dangerously-skip-permissions（claude将放飞自我，会有危险性）
+
+5.没有跳出登录界面的话使用/login命令登录（可以通过会员登录/使用API，key登录根据token消耗计算费用）
+	也可以使用国产AI大模型来驱动
+	
+6.打开claude编写代码的文件 ！open 文件名
+	生成的文件一般是单体架构的全部在一个文件里
+	
+7.对生成的文件进行拆分 shift + Tab （进入plan mode模式）
+	输入指令：将当前的(…)应用重构为使用React + Typescript + Vite的项目（shift + 回车换行不会提交任务）
+			保留现有功能等等
+	按ctrl + g 可以使用vs里的标签页来替换终端
+	
+8.如果对修改后不满意的话可以使用/rewind 命令进行回滚（终端命令操作的文件无法回滚），/tasks可以查看后台命令（进入后可以结束后台任务）
+
+9.如果对claude做出的前端页面不满意可以使用Figma上自己画一个页面导出png的图片
+	可以直接把图片拖给claude或者复制粘贴
+	这里使用MCP去做效果更好
+		1.安装MCP Server（去Figma官网）找到对应命令去claude执行
+		
+10./resume可以回到之前的任务（启动claude的时候执行claude -c）
+
+11.压缩上下文（将不需要的给处理掉，减少消耗）
+	/compact（压缩完后可以使用ctrl + o查看压缩后的上下文）
+	如果后面的任务和之前的没有关系可以使用/clear 清空所有的上下文
+	
+12.给claude生成一些初始化配置（放入希望claude每次都读取的内容）：
+	/init（创建claude.md文件）
+	/memory查看claude.md所有文件
+	
+13.Hook：允许用户在运行工具前后等时机执行一段自己指定的逻辑 （例如：自动格式化功能）
+	/hooks（设置执行时机）再进去就可以添加功能
+	
+14.Agent skill（给大模型看的说明书）：
+	1.创建一个skill文件夹：mkdir -p 创建地址
+	2.使用vs打开命令：code 地址
+	3.创建一个skill.md文件
+	
+15.SubAgent（独立的Agent，有独立的上下文、独立的skill、独立完成一件事）：
+	/agents
+	Agent skll和SubAgent的区别：
+	前者：执行过程的日志会全部存放到上下文里（适合处理：与上下文关联大，但是对上下文影响小的）
+	后者：拥有自己完全独立的上下文（适合处理：与上下文关联小，但是对上下文影响大的），只会把执行完的结果上传到主上下文中
+	
+16.Plugin（全家桶的安装包）：
+	/plugin（可以安装一系列的插件）
